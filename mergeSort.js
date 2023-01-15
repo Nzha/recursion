@@ -1,14 +1,15 @@
 const A = [2, 8, 15, 18];
 const B = [5, 9, 12, 17, 22];
+const C = [9, 3, 7, 5, 6, 4, 8, 2];
 
 /**
  *    A     B     C (array to store sorted list)
- * i->2  j->5  k->2 
+ * i->2  j->5  k->2
  *    8     9     5
  *    15    12    8
  *    18    17    9
  *                ...
- */              
+ */
 
 function merge(arr1, arr2) {
   let i = 0;
@@ -38,20 +39,18 @@ function merge(arr1, arr2) {
   return arrResult;
 }
 
-console.log(merge(A, B));
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-const arr = [9, 3, 7, 5, 6, 4, 8, 2];
+  let mid = Math.ceil(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
 
-const l = arr.at(0);
-const h = arr.at(-1);
+  const leftSorted = mergeSort(left);
+  const rightSorted = mergeSort(right);
 
-function mergeSort(l, h) {
-  let tempArr = [];
-
-  if (l < h) {
-    const mid = (l + h) / 2;
-    mergeSort(l, mid);
-    mergeSort(mid + 1, h);
-    return;
-  }
+  return merge(leftSorted, rightSorted);
 }
+
+// console.log(merge(A, B));
+console.log(mergeSort(C));
