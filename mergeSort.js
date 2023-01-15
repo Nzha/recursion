@@ -2,32 +2,32 @@ const A = [2, 8, 15, 18];
 const B = [5, 9, 12, 17, 22];
 const C = [9, 3, 7, 5, 6, 4, 8, 2];
 
-function merge(left, right) {
+function merge(arr1, arr2) {
   let sortedArr = [];
 
-  while (left.length && right.length) {
-    if (left[0] < right[0]) {
-      sortedArr.push(left.shift());
+  while (arr1.length > 0 && arr2.length > 0) {
+    if (arr1[0] < arr2[0]) {
+      sortedArr.push(arr1.shift());
     } else {
-      sortedArr.push(right.shift());
+      sortedArr.push(arr2.shift());
     }
   }
 
-  // Use spread operators to add remaining values in left or right if any
-  return [...sortedArr, ...left, ...right];
+  // Use spread operators to add any remaining values from arr1 or arr2
+  return [...sortedArr, ...arr1, ...arr2];
 }
 
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
 
-  let mid = Math.ceil(arr.length / 2);
+  const mid = Math.ceil(arr.length / 2);
   const left = arr.slice(0, mid);
   const right = arr.slice(mid);
 
-  const leftSorted = mergeSort(left);
-  const rightSorted = mergeSort(right);
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
 
-  return merge(leftSorted, rightSorted);
+  return merge(sortedLeft, sortedRight);
 }
 
 console.log(merge(A, B));
