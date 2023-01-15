@@ -1,5 +1,5 @@
 const A = [2, 8, 15, 18];
-const B = [5, 9, 12, 17];
+const B = [5, 9, 12, 17, 22];
 
 /**
  *    A     B     C (array to store sorted list)
@@ -31,8 +31,8 @@ function merge(arr1, arr2) {
   }
 
   // Copy remaining elements from second array if any
-  for (; k < arr2.length; j++) {
-    arrResult[k++] = arr[j];
+  for (; j < arr2.length; j++) {
+    arrResult[k++] = arr2[j];
   }
 
   return arrResult;
