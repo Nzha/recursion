@@ -1,29 +1,24 @@
-var array = [9, 7, 5, 11, 12, 2, 14, 3, 10, 6];
+var array = [9, 7, 5, 11, 12, 2, 14, 3, 10, 4, 6];
 
-// This function partitions given array and returns the index of the pivot.
+var swap = function (array, firstIndex, secondIndex) {
+  var temp = array[firstIndex];
+  array[firstIndex] = array[secondIndex];
+  array[secondIndex] = temp;
+};
+
 var partition = function (array, p, r) {
-  var e = array,
-    t = p,
-    n = r;
+  let q = p;
 
-  var r = function (e, t, n) {
-    var r = e[t];
-    e[t] = e[n];
-    e[n] = r;
-  };
-
-  var i = t;
-
-  for (var s = t; s < n; s++) {
-    if (e[s] <= e[n]) {
-      r(e, s, i);
-      i++;
+  for (var j = p; j < r; j++) {
+    if (array[j] <= array[r]) {
+      swap(array, j, q);
+      q++;
     }
   }
+	
+  swap(array, r, q);
 
-  r(e, n, i);
-
-  return i;
+  return q;
 };
 
 var quickSort = function (array, p, r) {
@@ -35,6 +30,9 @@ var quickSort = function (array, p, r) {
 
   return array;
 };
+
+var q = partition(array, 0, array.length - 1);
+console.log('Array after partitioning: ' + array);
 
 quickSort(array, 0, array.length - 1);
 console.log('Array after sorting: ' + array);
